@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body style="background:#065f46">
+  <h2>Card Battle</h2>
+  <h3>Credits: <span id="credit"></span></h3>
+
+  <div class="card-area">
+    <div>
+      <h3>You</h3>
+      <div id="you" class="card"></div>
+    </div>
+    <div>
+      <h3>Bot</h3>
+      <div id="bot" class="card"></div>
+    </div>
+  </div>
+
+  <button onclick="deal()">Draw (50)</button>
+
+  <div id="popup" class="popup"></div>
+  <script src="script.js"></script>
+
+<script>
+function rand(){ return Math.floor(Math.random()*13)+1; }
+
+function deal(){
+  if(!useCredit(50)) return;
+
+  let y=rand();
+  let b=rand();
+
+  document.getElementById("you").innerText=y;
+  document.getElementById("bot").innerText=b;
+
+  if(y>b) reward(200);
+}
+</script>
+</body>
+</html>

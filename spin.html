@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h2>Lucky Spin</h2>
+  <h3>Credits: <span id="credit"></span></h3>
+
+  <div class="grid" id="grid"></div>
+  <button onclick="spin()">SPIN (50)</button>
+
+  <div id="popup" class="popup"></div>
+  <script src="script.js"></script>
+
+<script>
+const icons=["🪙","💎","🔥","🌟","🍀"];
+
+function createGrid(){
+  let g=document.getElementById("grid");
+  for(let i=0;i<25;i++){
+    let c=document.createElement("div");
+    c.className="cell";
+    g.appendChild(c);
+  }
+}
+
+function spin(){
+  if(!useCredit(50)) return;
+  let cells=document.querySelectorAll(".cell");
+
+  let i=0;
+  let anim=setInterval(()=>{
+    cells.forEach(c=>{
+      c.innerText=icons[Math.floor(Math.random()*icons.length)];
+    });
+    i++;
+    if(i>15){
+      clearInterval(anim);
+      checkWin();
+    }
+  },80);
+}
+
+function checkWin(){
+  let cells=[...document.querySelectorAll(".cell")];
+  let first=cells[0].innerText;
+  let count=cells.filter(c=>c.innerText==first).length;
+  if(count>=8){
+    reward(300);
+  }
+}
+
+createGrid();
+</script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h2>Score Guess</h2>
+  <h3>Credits: <span id="credit"></span></h3>
+
+  <h3>Red FC vs Blue FC</h3>
+  <input id="guess" placeholder="Your guess score (e.g. 2-1)">
+  <button onclick="play()">Guess (50)</button>
+
+  <h3 id="result"></h3>
+
+  <div id="popup" class="popup"></div>
+  <script src="script.js"></script>
+
+<script>
+function play(){
+  if(!useCredit(50)) return;
+
+  let real=Math.floor(Math.random()*4)+"-"+Math.floor(Math.random()*4);
+  document.getElementById("result").innerText="Final Score: "+real;
+
+  if(document.getElementById("guess").value==real){
+    reward(400);
+  }
+}
+</script>
+</body>
+</html>
